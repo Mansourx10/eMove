@@ -42,12 +42,12 @@ class Voiture
     private $plaque_immatriculation;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="int")
      */
     private $kilometre;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="string", length=255)
      */
     private $disponible;
 
@@ -106,10 +106,8 @@ class Voiture
         return $this->couleur;
     }
 
-    /**
-     * @param mixed $couleur
-     */
-    public function setCouleur($couleur): void
+
+    public function setCouleur($couleur): string
     {
         $this->couleur = $couleur;
     }
