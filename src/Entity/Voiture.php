@@ -3,11 +3,13 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\DBAL\Types\Type;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\VoitureRepository")
  */
 class Voiture
+
 {
     /**
      * @ORM\Id()
@@ -42,12 +44,12 @@ class Voiture
     private $plaque_immatriculation;
 
     /**
-     * @ORM\Column(type="int")
+     * @ORM\Column(type="integer")
      */
     private $kilometre;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="boolean")
      */
     private $disponible;
 
@@ -106,8 +108,10 @@ class Voiture
         return $this->couleur;
     }
 
-
-    public function setCouleur($couleur): string
+    /**
+     * @param mixed $couleur
+     */
+    public function setCouleur($couleur): void
     {
         $this->couleur = $couleur;
     }
@@ -138,9 +142,8 @@ class Voiture
 
     /**
      * @param mixed $kilometre
-     * @return int
      */
-    public function setKilometre($kilometre): int
+    public function setKilometre($kilometre): void
     {
         $this->kilometre = $kilometre;
     }
@@ -155,9 +158,8 @@ class Voiture
 
     /**
      * @param mixed $disponible
-     * @return bool
      */
-    public function setDisponible($disponible): bool
+    public function setDisponible($disponible): void
     {
         $this->disponible = $disponible;
     }
