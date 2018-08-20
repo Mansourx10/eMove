@@ -7,7 +7,8 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\ClientRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\ClientRepository")7
+ * @ORM\Table(name="client")
  */
 class Client
 {
@@ -49,14 +50,18 @@ class Client
     private $numero_permis;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Location", mappedBy="Location")
+     * @ORM\Column(type="string", length=255)
      */
-    private $Location;
+    private $password;
 
-    public function __construct()
-    {
-        $this->Location = new ArrayCollection();
-    }
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Location", mappedBy="Client", cascade={"persist", "remove"})
+     */
+    private $permit;
+
+
+
+
     public function getId()
     {
         return $this->id;
@@ -134,34 +139,40 @@ class Client
         return $this;
     }
 
+
+
     /**
-     * @return Collection|Location[]
+     * @return mixed
      */
-    public function getLocation(): Collection
+    public function getPassword()
     {
-        return $this->Location;
+        return $this->password;
     }
 
-    public function addLocation(Location $location): self
+    /**
+     * @param mixed $password
+     */
+    public function setPassword($password): void
     {
-        if (!$this->Location->contains($location)) {
-            $this->Location[] = $location;
-            $location->setLocation($this);
+        $this->password = $password;
+    }
+
+    public function getPermit(): ?Location
+    {
+        return $this->permit;
+    }
+
+    public function setPermit(?Location $permit): self
+    {
+        $this->permit = $permit;
+
+        // set (or unset) the owning side of the relation if necessary
+        $newClient = $permit === null ? null : $this;
+        if ($newClient !== $permit->getClient()) {
+            $permit->setClient($newClient);
         }
 
         return $this;
     }
 
-    public function removeLocation(Location $location): self
-    {
-        if ($this->Location->contains($location)) {
-            $this->Location->removeElement($location);
-            // set the owning side to null (unless already changed)
-            if ($location->getLocation() === $this) {
-                $location->setLocation(null);
-            }
-        }
-
-        return $this;
-    }
 }

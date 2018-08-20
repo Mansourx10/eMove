@@ -42,12 +42,12 @@ class Location
     private $status;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Voiture", mappedBy="Voiture")
+     * @ORM\OneToOne(targetEntity="App\Entity\Voiture", cascade={"persist", "remove"})
      */
     private $Voiture;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Client", mappedBy="Client")
+     * @ORM\OneToOne(targetEntity="App\Entity\Client", cascade={"persist", "remove"})
      */
     private $Client;
 
@@ -125,12 +125,6 @@ class Location
     {
         $this->Voiture = $Voiture;
 
-        // set (or unset) the owning side of the relation if necessary
-        $newVoiture = $Voiture === null ? null : $this;
-        if ($newVoiture !== $Voiture->getVoiture()) {
-            $Voiture->setVoiture($newVoiture);
-        }
-
         return $this;
     }
 
@@ -142,12 +136,6 @@ class Location
     public function setClient(?Client $Client): self
     {
         $this->Client = $Client;
-
-        // set (or unset) the owning side of the relation if necessary
-        $newClient = $Client === null ? null : $this;
-        if ($newClient !== $Client->getClient()) {
-            $Client->setClient($newClient);
-        }
 
         return $this;
     }

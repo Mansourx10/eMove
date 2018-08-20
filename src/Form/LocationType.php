@@ -2,7 +2,10 @@
 
 namespace App\Form;
 
+use App\Entity\Client;
 use App\Entity\Location;
+use App\Entity\Voiture;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -17,7 +20,19 @@ class LocationType extends AbstractType
             ->add('debut_location')
             ->add('fin_location')
             ->add('status')
+            ->add('Voiture', EntityType::class, [
+                'class'=> Voiture::class,
+                'choice_label'=> 'marque',
+                'multiple'=> false,
+            ])
+            /*->add('Client', EntityType::class, [
+                'class'=>Client::class,
+                'choice_label'=> 'nom',
+                'multiple'=>true,
+            ])*/
         ;
+
+
     }
 
     public function configureOptions(OptionsResolver $resolver)

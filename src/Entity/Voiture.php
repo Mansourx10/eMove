@@ -7,6 +7,7 @@ use Doctrine\DBAL\Types\Type;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\VoitureRepository")
+ * @ORM\Table(name="voiture")
  */
 class Voiture
 
@@ -52,10 +53,6 @@ class Voiture
      * @ORM\Column(type="boolean")
      */
     private $disponible;
-
-    /*************
-     *
-     */
 
 
     public function getId()
