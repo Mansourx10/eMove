@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -46,6 +48,15 @@ class Client
      */
     private $numero_permis;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Location", mappedBy="Location")
+     */
+    private $Location;
+
+    public function __construct()
+    {
+        $this->Location = new ArrayCollection();
+    }
     public function getId()
     {
         return $this->id;
@@ -119,6 +130,37 @@ class Client
     public function setNumeroPermis(string $numero_permis): self
     {
         $this->numero_permis = $numero_permis;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Location[]
+     */
+    public function getLocation(): Collection
+    {
+        return $this->Location;
+    }
+
+    public function addLocation(Location $location): self
+    {
+        if (!$this->Location->contains($location)) {
+            $this->Location[] = $location;
+            $location->setLocation($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLocation(Location $location): self
+    {
+        if ($this->Location->contains($location)) {
+            $this->Location->removeElement($location);
+            // set the owning side to null (unless already changed)
+            if ($location->getLocation() === $this) {
+                $location->setLocation(null);
+            }
+        }
 
         return $this;
     }
