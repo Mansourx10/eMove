@@ -20,6 +20,14 @@
                 <td>{{ client.prenom }}</td>
             </tr>
             <tr>
+                <th>Email</th>
+                <td>{{ client.email }}</td>
+            </tr>
+            <tr>
+                <th>Mot de passe</th>
+                <td>{{ client.password }}</td>
+            </tr>
+            <tr>
                 <th>Date_naissance</th>
                 <td>{{ client.dateNaissance ? client.dateNaissance|date('Y-m-d H:i:s') : '' }}</td>
             </tr>

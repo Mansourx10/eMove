@@ -25,11 +25,11 @@ class LocationType extends AbstractType
                 'choice_label'=> 'marque',
                 'multiple'=> false,
             ])
-            /*->add('Client', EntityType::class, [
+            ->add('Client', EntityType::class, [
                 'class'=>Client::class,
                 'choice_label'=> 'nom',
-                'multiple'=>true,
-            ])*/
+                'multiple'=>false,
+            ])
         ;
 
 

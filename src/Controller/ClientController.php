@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 /**
  * @Route("/client")
@@ -26,18 +27,21 @@ class ClientController extends Controller
     /**
      * @Route("/new", name="client_new", methods="GET|POST")
      */
-    public function new(Request $request): Response
+    public function new(Request $request, UserPasswordEncoderInterface $encoder): Response
     {
         $client = new Client();
         $form = $this->createForm(ClientType::class, $client);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $hash = $encoder->encodePassword($client, $client->getPassword());
+            $client->setPassword($hash);
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($client);
             $em->flush();
 
-            return $this->redirectToRoute('client_index');
+            return $this->redirectToRoute('security_login');
         }
 
         return $this->render('client/new.html.twig', [
@@ -87,4 +91,6 @@ class ClientController extends Controller
 
         return $this->redirectToRoute('client_index');
     }
+
+
 }

@@ -5,12 +5,18 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ClientRepository")7
  * @ORM\Table(name="client")
+ * @UniqueEntity(
+ *     fields={"email"},
+ *     message="le mail que vous avez indiqué est déjà utilisé !"
+ * )
  */
-class Client
+class Client implements UserInterface
 {
     /**
      * @ORM\Id()
@@ -51,15 +57,20 @@ class Client
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length(min="8", minMessage="Votre mot de passe doit faire minimum 8 caractères")
      */
-    private $password;
+    private $password ;
 
     /**
      * @ORM\OneToOne(targetEntity="App\Entity\Location", mappedBy="Client", cascade={"persist", "remove"})
      */
     private $permit;
 
-
+    /**
+     * @ORM\Column(type="string", length=255)
+     * @Assert\Email()
+     */
+    private $email;
 
 
     public function getId()
@@ -139,8 +150,6 @@ class Client
         return $this;
     }
 
-
-
     /**
      * @return mixed
      */
@@ -175,4 +184,38 @@ class Client
         return $this;
     }
 
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(string $email): self
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    public function getRoles()
+    {
+        // TODO: Implement getRoles() method.
+        return [
+            'ROLE_USER'
+        ];
+    }
+
+    public function getUsername()
+    {
+        // TODO: Implement getUsername() method.
+    }
+
+    public function getSalt()
+    {
+        // TODO: Implement getSalt() method.
+    }
+
+    public function eraseCredentials()
+    {
+        // TODO: Implement eraseCredentials() method.
+    }
 }

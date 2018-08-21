@@ -19,7 +19,7 @@ class VoitureFixtures extends Fixture
         $voiture[$i]->setCouleur("Noir");
         $voiture[$i]->setPlaqueImmatriculation("6".$i."56r");
         $voiture[$i]->setNumeroDeSerie("classe ".$i);
-        $voiture[$i]->setKilometre(150*$i);
+        $voiture[$i]->setKilometre(150+$i);
         if($i%2) {
             $voiture[$i]->setDisponible(true);
         }else{

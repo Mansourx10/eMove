@@ -11,11 +11,13 @@
                 <th>Id</th>
                 <th>Nom</th>
                 <th>Prenom</th>
+                <th>Email</th>
+                <th>Mot de passe</th>
                 <th>Date_naissance</th>
                 <th>Adresse</th>
                 <th>Telephone</th>
                 <th>Numero_permis</th>
-                <th>actions</th>
+                <th>Voiture</th>
             </tr>
         </thead>
         <tbody>
@@ -24,6 +26,8 @@
                 <td>{{ client.id }}</td>
                 <td>{{ client.nom }}</td>
                 <td>{{ client.prenom }}</td>
+                <td>{{ client.email }}</td>
+                <td>{{ client.password }}</td>
                 <td>{{ client.dateNaissance ? client.dateNaissance|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ client.adresse }}</td>
                 <td>{{ client.telephone }}</td>
