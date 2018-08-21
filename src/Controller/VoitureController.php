@@ -24,6 +24,14 @@ class VoitureController extends Controller
     }
 
     /**
+     * @Route("/indexAction", name="voiture_indexAction", methods="GET")
+     */
+    public function indexAction(VoitureRepository $voitureRepository) : Response
+    {
+        return $this->render('voiture/indexAction.html.twig', ['voitures' => $voitureRepository->findByDisponibility()]);
+    }
+
+    /**
      * @Route("/new", name="voiture_new", methods="GET|POST")
      */
     public function new(Request $request): Response

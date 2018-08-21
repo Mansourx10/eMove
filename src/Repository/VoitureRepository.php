@@ -19,12 +19,31 @@ class VoitureRepository extends ServiceEntityRepository
         parent::__construct($registry, Voiture::class);
     }
 
+    public function findBydisponibility()
+    {
+       /* $query = $this->getClassMetadata()
+            ->select('v')
+            ->from(Voiture::class, 'v')
+            ->where('v.disponible = true')
+            ->getQuery()
+            ->getResult()
+        ;
+        dump($query); die();
+        return $query;*/
+        $rawSql = "SELECT v.* FROM voiture as v WHERE v.disponible = TRUE ";
+
+        $stmt = $this->getEntityManager()->getConnection()->prepare($rawSql);
+        $stmt->execute([]);
+
+        return $stmt->fetchAll();
+    }
+
 //    /**
 //     * @return Voiture[] Returns an array of Voiture objects
 //     */
     /*
     public function findByExampleField($value)
-    {
+
         return $this->createQueryBuilder('v')
             ->andWhere('v.exampleField = :val')
             ->setParameter('val', $value)

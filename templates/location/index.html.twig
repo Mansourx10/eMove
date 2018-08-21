@@ -26,6 +26,7 @@
                 <td>{{ location.debutLocation ? location.debutLocation|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ location.finLocation ? location.finLocation|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ location.status }}</td>
+                <td>{{ location.Voiture.marque }}</td>
                 <td>
                     <a href="{{ path('location_show', {'id': location.id}) }}">show</a>
                     <a href="{{ path('location_edit', {'id': location.id}) }}">edit</a>
