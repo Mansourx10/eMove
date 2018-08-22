@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Client;
+use App\Form\ClientAdminType;
 use App\Form\ClientType;
 use App\Repository\ClientRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -11,13 +12,10 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
-/**
- * @Route("/client")
- */
 class ClientController extends Controller
 {
     /**
-     * @Route("/", name="client_index", methods="GET")
+     * @Route("client/", name="client_index", methods="GET")
      */
     public function index(ClientRepository $clientRepository): Response
     {
@@ -25,7 +23,7 @@ class ClientController extends Controller
     }
 
     /**
-     * @Route("/new", name="client_new", methods="GET|POST")
+     * @Route("client/new", name="client_new", methods="GET|POST")
      */
     public function new(Request $request, UserPasswordEncoderInterface $encoder): Response
     {
@@ -51,7 +49,7 @@ class ClientController extends Controller
     }
 
     /**
-     * @Route("/{id}", name="client_show", methods="GET")
+     * @Route("client/{id}", name="client_show", methods="GET")
      */
     public function show(Client $client): Response
     {
@@ -59,7 +57,7 @@ class ClientController extends Controller
     }
 
     /**
-     * @Route("/{id}/edit", name="client_edit", methods="GET|POST")
+     * @Route("client/{id}/edit", name="client_edit", methods="GET|POST")
      */
     public function edit(Request $request, Client $client): Response
     {
@@ -79,7 +77,7 @@ class ClientController extends Controller
     }
 
     /**
-     * @Route("/{id}", name="client_delete", methods="DELETE")
+     * @Route("client/{id}", name="client_delete", methods="DELETE")
      */
     public function delete(Request $request, Client $client): Response
     {
@@ -92,5 +90,24 @@ class ClientController extends Controller
         return $this->redirectToRoute('client_index');
     }
 
+    /**
+     * @Route("admin/client/{id}/editAdmin", name="client_editAdmin", methods="GET|POST")
+     */
+    public function editAdmin(Request $request, Client $client): Response
+    {
+        $form = $this->createForm(ClientAdminType::class, $client);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('client_editAdmin', ['id' => $client->getId()]);
+        }
+
+        return $this->render('client/editAdmin.html.twig', [
+            'client' => $client,
+            'form' => $form->createView(),
+        ]);
+    }
 
 }

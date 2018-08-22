@@ -72,6 +72,11 @@ class Client implements UserInterface
      */
     private $email;
 
+    /**
+     * @ORM\Column(name="isAdmin", type="boolean")
+     */
+    private $isAdmin = false;
+
 
     public function getId()
     {
@@ -199,9 +204,13 @@ class Client implements UserInterface
     public function getRoles()
     {
         // TODO: Implement getRoles() method.
-        return [
-            'ROLE_USER'
-        ];
+        if($this->isAdmin)
+        {
+            return ['ROLE_ADMIN'];
+        }else
+            {
+            return ['ROLE_USER'];
+            }
     }
 
     public function getUsername()
@@ -217,5 +226,24 @@ class Client implements UserInterface
     public function eraseCredentials()
     {
         // TODO: Implement eraseCredentials() method.
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getisAdmin()
+    {
+        return $this->isAdmin;
+    }
+
+    /**
+     * @param boolean $isAdmin
+     *
+     * @return Client
+     */
+    public function setIsAdmin($isAdmin)
+    {
+        $this->isAdmin = $isAdmin;
+        return $this;
     }
 }
