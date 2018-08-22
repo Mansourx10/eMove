@@ -54,6 +54,11 @@ class Voiture
      */
     private $disponible;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $scooter;
+
 
     public function getId()
     {
@@ -162,5 +167,17 @@ class Voiture
     public function setDisponible($disponible): void
     {
         $this->disponible = $disponible;
+    }
+
+    public function getScooter(): ?bool
+    {
+        return $this->scooter;
+    }
+
+    public function setScooter(bool $scooter): self
+    {
+        $this->scooter = $scooter;
+
+        return $this;
     }
 }

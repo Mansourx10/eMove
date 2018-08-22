@@ -28,7 +28,7 @@ class VoitureController extends Controller
      */
     public function indexAction(VoitureRepository $voitureRepository) : Response
     {
-        return $this->render('voiture/indexAction.html.twig', ['voitures' => $voitureRepository->findByDisponibility()]);
+        return $this->render('voiture/indexAction.html.twig', ['voitures' => $voitureRepository->findByDisponible(true)]);
     }
 
     /**
@@ -95,4 +95,6 @@ class VoitureController extends Controller
 
         return $this->redirectToRoute('voiture_index');
     }
+
+
 }

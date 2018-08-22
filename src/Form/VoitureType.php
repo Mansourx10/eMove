@@ -19,6 +19,7 @@ class VoitureType extends AbstractType
             ->add('plaque_immatriculation')
             ->add('kilometre')
             ->add('disponible')
+            ->add("scooter")
         ;
     }
 

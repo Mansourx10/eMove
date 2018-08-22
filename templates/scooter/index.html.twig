@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello {% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Marque</th>
+            <th>Modele</th>
+            <th>Numero_de_serie</th>
+            <th>Couleur</th>
+            <th>Plaque_immatriculation</th>
+            <th>Kilometre</th>
+            <th>Disponible</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for scooter in scooters %}
+            <tr>
+                <td>{{ scooter.id }}</td>
+                <td>{{ scooter.marque }}</td>
+                <td>{{ scooter.modele }}</td>
+                <td>{{ scooter.numeroDeSerie }}</td>
+                <td>{{ scooter.couleur }}</td>
+                <td>{{ scooter.plaqueImmatriculation }}</td>
+                <td>{{ scooter.kilometre }}</td>
+                <td>{{ scooter.disponible ? 'Yes' : 'No' }}</td>
+                <td>
+                    <a href="{{ path('voiture_show', {'id': scooter.id}) }}">show</a>
+                    <a href="{{ path('voiture_edit', {'id': scooter.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+</div>
+{% endblock %}
