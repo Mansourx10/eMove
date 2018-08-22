@@ -1,16 +1,13 @@
-{% extends 'base.html.twig' %}
+{% extends 'layouts/layout.html.twig' %}
 
 {% block title %}Voiture{% endblock %}
 
-{% block body %}
+{% block content %}
     <h1>Voiture</h1>
 
     <table class="table">
         <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ voiture.id }}</td>
-            </tr>
+
             <tr>
                 <th>Marque</th>
                 <td>{{ voiture.marque }}</td>

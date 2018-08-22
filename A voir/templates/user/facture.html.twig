@@ -1,0 +1,78 @@
+
+{% extends "layout/layout.html.twig" %}
+{% block content %}
+
+    {% set promo = 0 %}
+    {% set TVA = vehicule.prixachat - (vehicule.prixachat * 20/100) %}
+    {% set TVA2 = vehicule.prixachat * 20/100 %}
+    {% set total = vehicule.prixachat - (vehicule.prixachat * promo/100) %}
+    <div class="container">
+        <div class="row resume">
+            <div class="well col-xs-12 col-sm-12">
+                <div class="row">
+                    <div class="col-xs-6 col-sm-6 col-md-6">
+                        <address>
+                            <strong>eMove</strong>
+                            <p>25 Rue Claude Tillier</p>
+                            <p>Paris, 75012</p>
+                            <p>01 55 43 26 65</p>
+                        </address>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 text-right">
+                        <p>
+                            <img src="{{ asset('img/logo.png') }}" width="200">
+
+                        </p>
+                        <p>
+                            <a href="{{  path('pdf', {'id': location.id}) }}" target="_blank" role="button" class="btn btn-danger">
+                                <strong>Récupérer le PDF</strong>
+                                <i class="far fa-file-pdf"></i>
+                            </a>
+                        <p>
+
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="text-center">
+                    </div>
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th>Produit</th>
+                            <th>Début</th>
+                            <th>Fin</th>
+                            <th class="text-center">Réduction</th>
+                            <th class="text-center">Total</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="col-md-7"><h4><em>{{ vehicule.modele }}</em></h4></td>
+                                <td class="col-md-1" style="text-align: center"> {{ location.startdate|date("m/d/Y H:i")  }} </td>
+                                <td class="col-md-1" style="text-align: center"> {{ location.enddate|date("m/d/Y H:i")  }} </td>
+                                <td class="col-md-1 text-center">0,00 €</td>
+                                <td class="col-md-2 text-center">{{ (vehicule.prixachat)|number_format(2, ',', ' ') }} €</td>
+                            </tr>
+                            <tr>
+                                <td colspan="3" class="text-right">
+                                    <p><strong>Sous-total: </strong></p>
+                                    <p><strong>TVA: </strong></p>
+                                </td>
+                                <td colspan="3" class="text-center">
+                                    <p><strong>{{ (TVA)|number_format(2, ',', ' ') }} €</strong></p>
+                                    <p><strong>{{ (TVA2)|number_format(2, ',', ' ') }} €</strong></p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="3" class="text-right"><h4><strong>Total: </strong></h4></td>
+                                <td colspan="3" class="text-center text-danger"><h4><strong>{{ (total)|number_format(2, ',', ' ') }} €</strong></h4></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <button type="button" class="btn btn-success btn-lg btn-block">MES COMMANDES</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

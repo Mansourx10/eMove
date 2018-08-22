@@ -1,0 +1,27 @@
+<header>
+    <nav class="container-fluid">
+        <div class="row">
+            <div class="col-sm-2">
+                <a href="/"><img src="{{ asset('img/logo.png') }}" /></a>
+            </div>
+
+            {{ render(controller('App\\Controller\\VehiculeController::searchBarAction')) }}
+            <div class="col-sm-4">
+                <ul>
+                    <li><a href="{{ path('shop') }}"><span>Catalogue</span> <i class="fa fa-shopping-bag" aria-hidden="true"></i></a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                            <span>Profil</span> <i class="fa fa-user" aria-hidden="true"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a class="dropdown-item" href="#">Profil</a>
+                            <a class="dropdown-item" href="#">Commandes</a>
+                            <div class="dropdown-divider"></div>
+                            <button type="button" onclick="$(location).attr('href', '/logout')" class="btn btn-danger">Déconnexion</button>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>

@@ -1,14 +1,13 @@
-{% extends 'base.html.twig' %}
+{% extends 'layouts/layout.html.twig' %}
 
 {% block title %}Location index{% endblock %}
 
-{% block body %}
+{% block content %}
     <h1>Location index</h1>
 
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
                 <th>Prix</th>
                 <th>Date_achat</th>
                 <th>Debut_location</th>
@@ -21,7 +20,6 @@
         <tbody>
         {% for location in locations %}
             <tr>
-                <td>{{ location.id }}</td>
                 <td>{{ location.prix }}</td>
                 <td>{{ location.dateAchat ? location.dateAchat|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ location.debutLocation ? location.debutLocation|date('Y-m-d H:i:s') : '' }}</td>

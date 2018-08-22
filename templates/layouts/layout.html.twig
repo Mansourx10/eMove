@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="fr">
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimal-ui">
+<title>eMove - Location de véhicule électrique</title>
+
+
+<!-- favicon -->
+<link rel="shortcut icon" href="{{ asset('img/favicon.ico') }}" type="image/x-icon">
+<link rel="icon" href="{{ asset('img/favicon.png') }}" type="image/png">
+<link rel="icon" sizes="32x32" href="{{ asset('img/favicon-32.png" type="image/png') }}">
+<link rel="icon" sizes="64x64" href="{{ asset('img/favicon-64.png" type="image/png') }}">
+<link rel="icon" sizes="96x96" href="{{ asset('img/favicon-96.png" type="image/png') }}">
+<link rel="icon" sizes="196x196" href="{{ asset('img/favicon-196.png" type="image/png') }}">
+<link rel="apple-touch-icon" sizes="152x152" href="{{ asset('img/apple-touch-icon.png') }}">
+<link rel="apple-touch-icon" sizes="60x60" href="{{ asset('img/apple-touch-icon-60x60.png') }}">
+<link rel="apple-touch-icon" sizes="76x76" href="{{ asset('img/apple-touch-icon-76x76.png') }}">
+<link rel="apple-touch-icon" sizes="114x114" href="{{ asset('img/apple-touch-icon-114x114.png') }}">
+<link rel="apple-touch-icon" sizes="120x120" href="{{ asset('img/apple-touch-icon-120x120.png') }}">
+<link rel="apple-touch-icon" sizes="144x144" href="{{ asset('img/apple-touch-icon-144x144.png') }}">
+<meta name="msapplication-TileImage" content="favicon-144.png">
+<meta name="msapplication-TileColor" content="#FFFFFF">
+
+
+
+<link href="{{ asset('css/master.css') }}" rel="stylesheet">
+<link href="{{ asset('plugins/iview/css/iview.css') }}" rel="stylesheet">
+<link href="{{ asset('plugins/iview/css/skin/style.css') }}" rel="stylesheet">
+
+<!-- SWITCHER -->
+<link href="{{ asset('plugins/switcher/css/switcher.css') }}" rel="stylesheet" id="switcher-css" media="all">
+<link href="{{ asset('plugins/switcher/css/color1.css') }}" rel="alternate stylesheet" title="color1" media="all">
+<link href="{{ asset('plugins/switcher/css/color2.css') }}" rel="alternate stylesheet" title="color2" media="all">
+<link href="{{ asset('plugins/switcher/css/color3.css') }}" rel="alternate stylesheet" title="color3" media="all">
+<link href="{{ asset('plugins/switcher/css/color4.css') }}" rel="alternate stylesheet" title="color4" media="all">
+<link href="{{ asset('plugins/switcher/css/color5.css') }}" rel="alternate stylesheet" title="color5" media="all">
+<script src="{{ asset('plugins/jquery/jquery-1.11.1.min.js') }}"></script>
+</head>
+<body>
+
+{% if app.user %}
+    {% include 'layouts/menu_user.html.twig' %}
+{% else %}
+    {% include 'layouts/menu.html.twig' %}
+{% endif %}
+{% block content %}{% endblock %}
+{% include 'layouts/footer.html.twig' %}
+</body>
+</html>

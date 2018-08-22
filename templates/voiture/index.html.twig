@@ -1,14 +1,13 @@
-{% extends 'base.html.twig' %}
+{% extends 'layouts/layout.html.twig' %}
 
-{% block title %}Voiture index{% endblock %}
-
-{% block body %}
-    <h1>Voiture index</h1>
-
-    <table class="table">
+{% block content %}
+    {% block body %}
+<br/><br/><br/><br/><br/><br/><br/><br/>
+<div class="container">
+    <div class="row">
+    <table class="table table-striped">
         <thead>
             <tr>
-                <th>Id</th>
                 <th>Marque</th>
                 <th>Modele</th>
                 <th>Numero_de_serie</th>
@@ -22,7 +21,7 @@
         <tbody>
         {% for voiture in voitures %}
             <tr>
-                <td>{{ voiture.id }}</td>
+
                 <td>{{ voiture.marque }}</td>
                 <td>{{ voiture.modele }}</td>
                 <td>{{ voiture.numeroDeSerie }}</td>
@@ -31,17 +30,20 @@
                 <td>{{ voiture.kilometre }}</td>
                 <td>{{ voiture.disponible ? 'Yes' : 'No' }}</td>
                 <td>
-                    <a href="{{ path('voiture_show', {'id': voiture.id}) }}">show</a>
-                    <a href="{{ path('voiture_edit', {'id': voiture.id}) }}">edit</a>
+                    <a href="{{ path('voiture_show', {'id': voiture.id}) }}" class="list-group-item text-right">show</a>
+                    <a href="{{ path('voiture_edit', {'id': voiture.id}) }}" class="list-group-item text-right">edit</a>
                 </td>
             </tr>
         {% else %}
-            <tr>
+            <tr class="list-group-item text-right">
                 <td colspan="9">no records found</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('voiture_new') }}">Create new</a>
+    <a href="{{ path('voiture_new') }}" class="list-group-item text-right">Create new</a>
+    </div>
+</div>
+    {% endblock %}
 {% endblock %}
