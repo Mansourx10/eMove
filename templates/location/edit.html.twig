@@ -3,6 +3,9 @@
 {% block title %}Edit Location{% endblock %}
 
 {% block content %}
+    <div class="fixMenu">
+        <div class="content">
+            <div class="container">
     <h1>Edit Location</h1>
 
     {{ include('location/_form.html.twig', {'button_label': 'Update'}) }}
@@ -10,4 +13,7 @@
     <a href="{{ path('location_index') }}">back to list</a>
 
     {{ include('location/_delete_form.html.twig') }}
+            </div>
+        </div>
+    </div>
 {% endblock %}

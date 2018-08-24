@@ -2,12 +2,13 @@
 
 {% block content %}
     {% block body %}
-<br/><br/><br/><br/><br/><br/><br/><br/>
-<div class="container">
-    <div class="row">
-    <table class="table table-striped">
-        <thead>
-            <tr>
+<div class="fixMenu">
+    <div class="content">
+        <div class="container">
+        <div class="row">
+            <table class="table table-striped">
+                <thead>
+                <tr>
                 <th>Marque</th>
                 <th>Modele</th>
                 <th>Numero_de_serie</th>
@@ -16,8 +17,8 @@
                 <th>Kilometre</th>
                 <th>Disponible</th>
                 <th>actions</th>
-            </tr>
-        </thead>
+                </tr>
+                </thead>
         <tbody>
         {% for voiture in voitures %}
             <tr>
@@ -42,7 +43,9 @@
         </tbody>
     </table>
 
-    <a href="{{ path('voiture_new') }}" class="list-group-item text-right">Create new</a>
+        <button><a href="{{ path('voiture_new') }}" class="list-group-item text-right">Ajouter une nouvelle voiture</a></button>
+    </div>
+    </div>
     </div>
 </div>
     {% endblock %}

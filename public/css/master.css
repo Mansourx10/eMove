@@ -39,3 +39,8 @@ Primary use:	eMove
 @import url('color.css');
 /*@import url('debugging.css');*/
 
+
+.fixMenu {
+    margin-top: 142px;
+    margin-bottom: 100px;
+}

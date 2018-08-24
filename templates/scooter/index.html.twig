@@ -3,22 +3,17 @@
 {% block title %}Hello {% endblock %}
 
 {% block content %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-<div class="example-wrapper">
-
-    <table class="table">
+<div class="fixMenu">
+    <div class="content">
+        <div class="container">
+        <table class="table table-success">
         <thead>
         <tr>
-            <th>Id</th>
             <th>Marque</th>
             <th>Modele</th>
-            <th>Numero_de_serie</th>
+            <th>Numero de serie</th>
             <th>Couleur</th>
-            <th>Plaque_immatriculation</th>
+            <th>Plaque d'immatriculation</th>
             <th>Kilometre</th>
             <th>Disponible</th>
         </tr>
@@ -26,7 +21,6 @@
         <tbody>
         {% for scooter in scooters %}
             <tr>
-                <td>{{ scooter.id }}</td>
                 <td>{{ scooter.marque }}</td>
                 <td>{{ scooter.modele }}</td>
                 <td>{{ scooter.numeroDeSerie }}</td>
@@ -46,6 +40,7 @@
         {% endfor %}
         </tbody>
     </table>
-
+        </div>
+    </div>
 </div>
 {% endblock %}

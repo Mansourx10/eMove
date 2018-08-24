@@ -3,6 +3,9 @@
 {% block title %}Location{% endblock %}
 
 {% block content %}
+<div class="fixMenu">
+    <div class="content">
+        <div class="container">
     <h1>Location</h1>
 
     <table class="table">
@@ -39,4 +42,7 @@
     <a href="{{ path('location_edit', {'id': location.id}) }}">edit</a>
 
     {{ include('location/_delete_form.html.twig') }}
+        </div>
+    </div>
+</div>
 {% endblock %}

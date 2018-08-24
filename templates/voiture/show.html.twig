@@ -3,45 +3,49 @@
 {% block title %}Voiture{% endblock %}
 
 {% block content %}
+<div class="fixMenu">
     <h1>Voiture</h1>
-
-    <table class="table">
-        <tbody>
-
-            <tr>
+    <div class="content">
+        <div class="container">
+            <table class="table">
+                <tbody>
+                <tr>
                 <th>Marque</th>
                 <td>{{ voiture.marque }}</td>
             </tr>
-            <tr>
+                <tr>
                 <th>Modele</th>
                 <td>{{ voiture.modele }}</td>
             </tr>
-            <tr>
+                <tr>
                 <th>Numero_de_serie</th>
                 <td>{{ voiture.numeroDeSerie }}</td>
             </tr>
-            <tr>
+                <tr>
                 <th>Couleur</th>
                 <td>{{ voiture.couleur }}</td>
             </tr>
-            <tr>
+                <tr>
                 <th>Plaque_immatriculation</th>
                 <td>{{ voiture.plaqueImmatriculation }}</td>
             </tr>
-            <tr>
+                <tr>
                 <th>Kilometre</th>
                 <td>{{ voiture.kilometre }}</td>
             </tr>
-            <tr>
+                <tr>
                 <th>Disponible</th>
                 <td>{{ voiture.disponible ? 'Yes' : 'No' }}</td>
             </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('voiture_indexAction') }}">back to list</a>
+            <button><a href="{{ path('voiture_index') }}">Liste de Voiture</a></button>
 
-    <a href="{{ path('voiture_edit', {'id': voiture.id}) }}">edit</a>
+            <button><a href="{{ path('voiture_edit', {'id': voiture.id}) }}">Modifié</a></button>
 
     {{ include('voiture/_delete_form.html.twig') }}
+        </div>
+    </div>
+</div>
 {% endblock %}

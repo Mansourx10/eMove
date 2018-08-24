@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Client;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -15,9 +16,10 @@ class ClientType extends AbstractType
         $builder
             ->add('nom')
             ->add('prenom')
-            ->add('email')
             ->add('password', PasswordType::class)
-            ->add('date_naissance')
+            ->add('date_naissance', DateType::class, array(
+                'format'=> 'yyyy-MM-dd'
+            ))
             ->add('adresse')
             ->add('telephone')
             ->add('numero_permis')

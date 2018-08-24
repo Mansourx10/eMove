@@ -10,13 +10,13 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-/**
+/*
  * @Route("/voiture")
  */
 class VoitureController extends Controller
 {
     /**
-     * @Route("/", name="voiture_index", methods="GET")
+     * @Route("/admin/voiture", name="voiture_index", methods="GET")
      */
     public function index(VoitureRepository $voitureRepository): Response
     {
@@ -24,7 +24,7 @@ class VoitureController extends Controller
     }
 
     /**
-     * @Route("/indexAction", name="voiture_indexAction", methods="GET")
+     * @Route("/voiture/indexAction", name="voiture_indexAction", methods="GET")
      */
     public function indexAction(VoitureRepository $voitureRepository) : Response
     {
@@ -32,7 +32,7 @@ class VoitureController extends Controller
     }
 
     /**
-     * @Route("/new", name="voiture_new", methods="GET|POST")
+     * @Route("/admin/voiture/new", name="voiture_new", methods="GET|POST")
      */
     public function new(Request $request): Response
     {
@@ -55,7 +55,7 @@ class VoitureController extends Controller
     }
 
     /**
-     * @Route("/{id}", name="voiture_show", methods="GET")
+     * @Route("/voiture/{id}", name="voiture_show", methods="GET")
      */
     public function show(Voiture $voiture): Response
     {
@@ -63,7 +63,7 @@ class VoitureController extends Controller
     }
 
     /**
-     * @Route("/{id}/edit", name="voiture_edit", methods="GET|POST")
+     * @Route("/admin/voiture/{id}/edit", name="voiture_edit", methods="GET|POST")
      */
     public function edit(Request $request, Voiture $voiture): Response
     {
@@ -83,7 +83,7 @@ class VoitureController extends Controller
     }
 
     /**
-     * @Route("/{id}", name="voiture_delete", methods="DELETE")
+     * @Route("/admin/voiture/{id}", name="voiture_delete", methods="DELETE")
      */
     public function delete(Request $request, Voiture $voiture): Response
     {

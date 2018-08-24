@@ -3,6 +3,9 @@
 {% block title %}Client{% endblock %}
 
 {% block content %}
+<div class="fixMenu">
+    <div class="content">
+        <div class="container">
     <h1>Client</h1>
 
     <table class="table">
@@ -21,12 +24,8 @@
                 <td>{{ client.email }}</td>
             </tr>
             <tr>
-                <th>Mot de passe</th>
-                <td>{{ client.password }}</td>
-            </tr>
-            <tr>
-                <th>Date_naissance</th>
-                <td>{{ client.dateNaissance ? client.dateNaissance|date('Y-m-d H:i:s') : '' }}</td>
+                <th>Date de naissance</th>
+                <td>{{ client.dateNaissance ? client.dateNaissance|date('d-m-Y') : '' }}</td>
             </tr>
             <tr>
                 <th>Adresse</th>
@@ -37,15 +36,16 @@
                 <td>{{ client.telephone }}</td>
             </tr>
             <tr>
-                <th>Numero_permis</th>
+                <th>Numero de permis</th>
                 <td>{{ client.numeroPermis }}</td>
             </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('client_index') }}">back to list</a>
+            <button class="button bounce"><a href="{{ path('voiture_indexAction') }}">back to list</a></button>
 
-    <a href="{{ path('client_edit', {'id': client.id}) }}">edit</a>
-
-    {{ include('client/_delete_form.html.twig') }}
+            <button><a href="{{ path('client_edit', {'id': client.id}) }}">edit</a></button>
+        </div>
+    </div>
+</div>
 {% endblock %}

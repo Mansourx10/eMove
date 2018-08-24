@@ -3,11 +3,14 @@
 {% block title %}Edit Client{% endblock %}
 
 {% block content %}
+<div class="fixMenu">
+    <div class="content">
+        <div class="container">
     <h1>Edit Client</h1>
 
-    {{ include('client/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('client/_formEdit.html.twig', {'button_label': 'Update'}) }}
 
-    <a href="{{ path('client_index') }}">back to list</a>
-
-    {{ include('client/_delete_form.html.twig') }}
+        </div>
+    </div>
+</div>
 {% endblock %}

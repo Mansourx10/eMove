@@ -15,7 +15,7 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 class ClientController extends Controller
 {
     /**
-     * @Route("client/", name="client_index", methods="GET")
+     * @Route("admin/client/", name="client_index", methods="GET")
      */
     public function index(ClientRepository $clientRepository): Response
     {
@@ -23,7 +23,7 @@ class ClientController extends Controller
     }
 
     /**
-     * @Route("client/new", name="client_new", methods="GET|POST")
+     * @Route("client/inscription", name="inscription", methods="GET|POST")
      */
     public function new(Request $request, UserPasswordEncoderInterface $encoder): Response
     {
@@ -42,7 +42,7 @@ class ClientController extends Controller
             return $this->redirectToRoute('security_login');
         }
 
-        return $this->render('client/new.html.twig', [
+        return $this->render('security/inscription.html.twig', [
             'client' => $client,
             'form' => $form->createView(),
         ]);
@@ -77,7 +77,7 @@ class ClientController extends Controller
     }
 
     /**
-     * @Route("client/{id}", name="client_delete", methods="DELETE")
+     * @Route("admin/client/{id}", name="client_delete", methods="DELETE")
      */
     public function delete(Request $request, Client $client): Response
     {

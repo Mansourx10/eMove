@@ -34,7 +34,7 @@
         <div class="container">
           <div class="row">
             <div class="col-xs-12">
-              <div class="header-contacts"> <span class="header-contacts__item"><i class="icon fa fa-phone"></i>+ 01 02 03 04 05 06</span> <a class="header-contacts__item" href="mailto:admin@emove.com"><i class="icon fa fa-envelope"></i>admin (at) emove.com</a> </div>
+              <div class="header-contacts"> <span class="header-contacts__item"><i class="icon fa fa-phone"></i>{{ app.user.nom }}</span> <a class="header-contacts__item" href={{ app.user.nom }}."@emove.com"><i class="icon fa fa-envelope"></i>{{ app.user.nom }}.com</a> </div>
               <ul class="social-links list-inline">
                 <li><a class="icon fa fa-facebook" href="javascript:void(0);"></a></li>
                 <li><a class="icon fa fa-twitter" href="javascript:void(0);"></a></li>
@@ -54,18 +54,17 @@
       <div class="header__inner">
         <div class="container">
           <div class="row">
-            <div class="col-md-12 col-xs-12"> <a href="index.html" class="logo"> <img class="logo__img img-responsive" src="{{ asset('img/logo.png') }}" height="50" width="111" alt="Logo"> </a>
+            <div class="col-md-12 col-xs-12"> <a href="" class="logo"> <img class="logo__img img-responsive" src="{{ asset('img/logo.png') }}" height="50" width="111" alt="Logo"> </a>
               <div class="navbar yamm">
                 <div class="navbar-header hidden-md hidden-lg hidden-sm">
                   <button type="button" data-toggle="collapse" data-target="#navbar-collapse-1" class="navbar-toggle"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
                   <a href="javascript:void(0);" class="navbar-brand"></a> </div>
                 <div id="navbar-collapse-1" class="navbar-collapse collapse">
                   <ul class="nav navbar-nav">
-                    <li><a href="">Accueil</a></li>
-                    <li><a href="vehicle-listings.html">VEHICLE LISTINGS</a> </li>
-                    <li><a href="car-details.html">CAR DETAILS</a></li>
-                    <li><a href="news-grid.html">NEWS GRID</a></li>
-                    <li><a href="news-details.html">NEWS DETAILS</a></li>
+                    <li><a href="{{ path('voiture_indexAction') }}">Accueil</a></li>
+                    <li><a href="{{ path('list_scooter') }}">SCOOTER</a> </li>
+                    <li><a href="{{ path('location_client') }}">LOCATION</a></li>
+                    <li><a href="{{ path('client_show', {'id': app.user.id}) }}">PROFIL</a></li>
                     <li class="dropdown" ><a href="{{ path('security_logout') }}">Se deconnecter</a></li>
                   </ul>
                 </div>

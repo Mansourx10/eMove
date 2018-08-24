@@ -3,9 +3,15 @@
 {% block title %}New Location{% endblock %}
 
 {% block content %}
-    <h1>Create new Location</h1>
+<div class="fixMenu">
+    <div class="content">
+        <div class="container">
+    <h1>Louer une voiture</h1>
 
     {{ include('location/_form.html.twig') }}
 
-    <a href="{{ path('location_index') }}">back to list</a>
+
+        </div>
+    </div>
+</div>
 {% endblock %}

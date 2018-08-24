@@ -1,0 +1,50 @@
+{% extends 'layouts/layout.html.twig' %}
+
+{% block title %}Location index{% endblock %}
+
+{% block content %}
+<div class="fixMenu">
+    <div class="content">
+        <div class="container">
+            <h1>Location index</h1>
+
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Prix</th>
+                    <th>Date_achat</th>
+                    <th>Debut_location</th>
+                    <th>Fin_location</th>
+                    <th>Status</th>
+                    <th>Voiture</th>
+                    <th>Client</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for location in locations %}
+                    <tr>
+                        <td>{{ location.prix }}</td>
+                        <td>{{ location.dateAchat ? location.dateAchat|date('D-m-y') : '' }}</td>
+                        <td>{{ location.debutLocation ? location.debutLocation|date('d-m-Y') : '' }}</td>
+                        <td>{{ location.finLocation ? location.finLocation|date('d-m-Y') : '' }}</td>
+                        <td>{{ location.status }}</td>
+                        <td>{{ location.Voiture.marque }}</td>
+                        <td>{{ location.Client.nom }}</td>
+                        <td>
+                            <a href="{{ path('location_show', {'id': location.id}) }}">show</a>
+                            <a href="{{ path('location_edit', {'id': location.id}) }}">edit</a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="7">no records found</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+            <a href="{{ path('location_new') }}">Faire une location</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

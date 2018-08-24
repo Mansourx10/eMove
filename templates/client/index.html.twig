@@ -3,6 +3,9 @@
 {% block title %}Client index{% endblock %}
 
 {% block content %}
+    <div class="fixMenu">
+        <div class="content">
+            <div class="container">
     <h1>Client index</h1>
 
     <table class="table">
@@ -42,6 +45,7 @@
         {% endfor %}
         </tbody>
     </table>
-
-    <a href="{{ path('client_new') }}">Create new</a>
+            </div>
+        </div>
+    </div>
 {% endblock %}

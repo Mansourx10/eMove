@@ -8,7 +8,9 @@ use App\Repository\LocationRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 /**
  * @Route("/location")
@@ -28,20 +30,37 @@ class LocationController extends Controller
      */
     public function new(Request $request): Response
     {
+        $user = $this->getUser();
         $location = new Location();
+
         $form = $this->createForm(LocationType::class, $location);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($location);
-            $em->flush();
 
-            return $this->redirectToRoute('location_index');
+            $location->setClient($user);
+            $location->setDateAchat(new \DateTime());
+            $debut = $location->getDebutLocation();
+            $fin = $location->getFinLocation();
+
+            if ($debut < $fin)
+            {
+                $interval = $debut->diff($fin);
+
+                $location->setPrix($interval->days * 129);
+                $location->setStatus("En location");
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($location);
+                $em->flush();
+
+                return $this->redirectToRoute('location_index');
+            }else{
+                throw new NotFoundHttpException("La date du début de location ne peut pas être inferieur ou égale a la date du fin de location ");
+                }
         }
 
         return $this->render('location/new.html.twig', [
-            'location' => $location,
+            'locations' => $location,
             'form' => $form->createView(),
         ]);
     }
@@ -86,5 +105,15 @@ class LocationController extends Controller
         }
 
         return $this->redirectToRoute('location_index');
+    }
+
+    /**
+     * @Route("/client/list", name="location_client", methods={"GET"})
+     */
+    public function location_client(Request $request, LocationRepository $locationRepository)
+    {
+        $user = $this->getUser();
+
+        return $this->render('location/location_client.html.twig', ['locations' => $locationRepository->findBy(['Client' => $user->getId()])]);
     }
 }

@@ -1,0 +1,17 @@
+{% extends 'layouts/layout.html.twig' %}
+
+{% block title %}Créer un nouveau Client{% endblock %}
+
+{% block content %}
+<div class="fixMenu">
+    <div class="content">
+        <div class="container">
+    <h1>Ajouter un nouveau Client</h1>
+
+    {{ include('security/_form.html.twig') }}
+
+<!--    <a href="{{ path('client_index') }}">back to list</a> -->
+        </div>
+    </div>
+</div>
+{% endblock %}

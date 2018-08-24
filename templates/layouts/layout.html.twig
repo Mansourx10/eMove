@@ -40,7 +40,11 @@
 <body>
 
 {% if app.user %}
-    {% include 'layouts/menu_user.html.twig' %}
+    {% if app.user.isAdmin == true %}
+            {% include 'layouts/menu_admin.html.twig' %}
+        {% else %}
+            {% include 'layouts/menu_user.html.twig' %}
+    {% endif %}
 {% else %}
     {% include 'layouts/menu.html.twig' %}
 {% endif %}
