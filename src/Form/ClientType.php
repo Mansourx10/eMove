@@ -16,6 +16,7 @@ class ClientType extends AbstractType
         $builder
             ->add('nom')
             ->add('prenom')
+			->add('email')
             ->add('password', PasswordType::class)
             ->add('date_naissance', DateType::class, array(
                 'format'=> 'yyyy-MM-dd'
